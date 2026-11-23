@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy 1st Monthsary, Love!</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6dfe3;--bg2:#e9b9c6;--env:#fff4ee;--env2:#f0d6cc;--seal:#a8213f;--ink:#4a2330;--paper:#fffaf3;--stem:#4f8a5b;--stem2:#2f6a45;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1620;--bg2:#4a2335;--env:#f3e3dc;--env2:#d9bcb2}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(ellipse at 50% 100%,var(--bg2),var(--bg) 70%);font-family:Lora,Georgia,serif;color:var(--ink);overflow:hidden;position:relative}
+.stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.hint{position:absolute;bottom:9%;width:100%;text-align:center;font-family:Caveat,cursive;font-size:1.6rem;transition:opacity .5s}
+/* envelope */
+.env{position:relative;width:min(340px,82vw);aspect-ratio:1.5;cursor:pointer;transition:transform .8s ease,opacity .8s ease;border:0;background:none;padding:0}
+.env:focus-visible{outline:3px solid var(--seal);outline-offset:8px}
+.body{position:absolute;inset:0;background:var(--env);border-radius:6px;box-shadow:0 14px 30px rgba(74,35,48,.3);overflow:hidden}
+.body::before,.body::after{content:"";position:absolute;bottom:0;width:50%;height:100%;background:var(--env2)}
+.body::before{left:0;clip-path:polygon(0 0,100% 100%,0 100%)}
+.body::after{right:0;clip-path:polygon(100% 0,100% 100%,0 100%)}
+.flap{position:absolute;left:0;top:0;width:100%;height:58%;background:var(--env2);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .9s ease;z-index:3;filter:drop-shadow(0 3px 2px rgba(0,0,0,.15))}
+.seal{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:var(--seal);z-index:4;display:grid;place-items:center;color:#fff;font-size:20px;transition:opacity .4s;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.env.open .flap{transform:rotateX(180deg);z-index:0}
+.env.open .seal{opacity:0}
+.env.gone{transform:translateY(60vh) scale(.8);opacity:0;pointer-events:none}
+/* tulips */
+.garden{position:absolute;left:0;right:0;bottom:0;height:62%;pointer-events:none}
+.tulip{position:absolute;bottom:-4px;width:0;height:var(--h);left:var(--x);transform-origin:bottom center}
+.stem{position:absolute;left:-2px;bottom:0;width:5px;height:100%;background:linear-gradient(var(--stem),var(--stem2));border-radius:3px;transform:scaleY(0);transform-origin:bottom;animation:grow 1.4s var(--d) cubic-bezier(.2,.8,.3,1) forwards}
+.leaf{position:absolute;bottom:0;left:0;width:22px;height:var(--lh);background:var(--stem);border-radius:100% 0 100% 0;transform-origin:bottom left;transform:scale(0) rotate(-20deg);animation:leaf 1s calc(var(--d) + .5s) ease-out forwards}
+.leaf.r{transform:scaleX(-1) scale(0) rotate(-20deg);animation-name:leafr}
+.bloom{position:absolute;left:-23px;bottom:100%;width:46px;height:56px;margin-bottom:-14px;transform:scale(0);transform-origin:bottom center;animation:bloom 1s calc(var(--d) + 1s) cubic-bezier(.3,1.5,.5,1) forwards;animation-fill-mode:forwards}
+.bloom i{position:absolute;bottom:0;width:26px;height:52px;background:linear-gradient(var(--c1),var(--c2));border-radius:50% 50% 45% 45%/70% 70% 30% 30%}
+.bloom i:nth-child(1){left:0;transform:rotate(-12deg);transform-origin:bottom}
+.bloom i:nth-child(2){right:0;transform:rotate(12deg);transform-origin:bottom}
+.bloom i:nth-child(3){left:10px;height:58px;filter:brightness(1.08);z-index:2}
+.sway{animation:sway 4s var(--d) ease-in-out infinite alternate;transform-origin:bottom center;height:100%}
+@keyframes grow{to{transform:scaleY(1)}}
+@keyframes leaf{to{transform:scale(1) rotate(-20deg)}}
+@keyframes leafr{to{transform:scaleX(-1) scale(1) rotate(-20deg)}}
+@keyframes bloom{to{transform:scale(1)}}
+@keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+/* letter */
+.letter{position:absolute;left:50%;top:50%;width:min(520px,90vw);max-height:78vh;overflow:auto;transform:translate(-50%,-30%) scale(.85);opacity:0;background:var(--paper);background-image:repeating-linear-gradient(transparent 0 33px,rgba(168,33,63,.1) 33px 34px);padding:34px 30px 28px;border-radius:4px;box-shadow:0 20px 50px rgba(74,35,48,.4);transition:all 1.2s cubic-bezier(.2,.8,.2,1);pointer-events:none;color:#4a2330;z-index:5}
+.letter.show{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+.letter h1{font-family:Caveat,cursive;font-weight:500;font-size:2.4rem;margin:0 0 12px;color:var(--seal)}
+.letter p{line-height:34px;margin:0 0 34px;font-size:1.02rem}
+.letter .sign{font-family:Caveat,cursive;font-size:2rem;line-height:1.1;margin:0;text-align:right}
+.photos{display:flex;gap:14px;justify-content:center;margin:0 0 30px;flex-wrap:wrap}.frame{position:relative;display:block;width:136px;background:#fff;padding:8px 8px 6px;box-shadow:0 6px 14px rgba(74,35,48,.25);cursor:pointer;text-align:center;transition:transform .3s}.frame:nth-child(1){transform:rotate(-3deg)}.frame:nth-child(2){transform:rotate(2deg) translateY(-6px)}.frame:nth-child(3){transform:rotate(-1.5deg)}.frame:hover,.frame:focus-within{transform:rotate(0) scale(1.04)}.frame:focus-within{outline:2px solid var(--seal)}.frame input{position:absolute;opacity:0;width:1px;height:1px}.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;background:#f5e3e7 center/cover no-repeat;color:var(--seal);font-size:1.8rem;line-height:1.2}.ph small{font-size:.75rem;color:#7a4a58}.frame em{display:block;font-family:Caveat,cursive;font-style:normal;font-size:1.2rem;line-height:1.6;margin-top:2px}.frame[data-src]{cursor:zoom-in}.lb{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;background:rgba(30,10,18,.82);opacity:0;pointer-events:none;transition:opacity .3s;cursor:zoom-out}.lb.on{opacity:1;pointer-events:auto}.lb img{max-width:92vw;max-height:76vh;border:10px solid #fff;box-shadow:0 20px 50px rgba(0,0,0,.5);transform:scale(.6) rotate(-4deg);transition:transform .5s cubic-bezier(.3,1.4,.5,1)}.lb.on img{transform:scale(1) rotate(0)}.lb p{margin:0;font-family:Caveat,cursive;font-size:1.8rem;color:#fff}.again{display:block;margin:18px auto 0;background:none;border:1px solid var(--seal);color:var(--seal);font:inherit;padding:6px 16px;border-radius:20px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <button class="env" id="env" aria-label="Open the letter"><div class="body"></div><div class="flap"></div><div class="seal">♥</div></button>
+</div>
+<div class="garden" id="garden" aria-hidden="true"></div>
+<div class="hint" id="hint">Tap mo Love kung love mo'ko :p</div>
+<article class="letter" id="letter">
+  <h1>My love,</h1>
+  <p>Happy 1st Monthsary! It’s already been a month since I got the greatest birthday gift I could ever ask for (you). I got myself a beautiful woman with a good heart. Thank you for your presence, Love.  Everything feels easy when I’m with you. I love you so much. I’m sorry if I’m being makulit and a ragebaiter sometimes hehe. It’s just my way of making papansin sa’yo >~<. Crush pa rin kita no. Porket ba couple na tayo hindi na kita crush? Nagpapansin lang ako sa crush ko ba’t ba :P. </p>
+  <p>Kidding aside, Thank you for being my safe place, Love. You made me realize that I can share all of my thoughts and experience without any judgment. Thank you for making me feel na hindi lang ako mag isa sa mga pagsubok sa buhay. You've been my inspiration ever since I met you. You motivated me to be more determined on my career. Maybe you haven't noticed it but it's the truth, Love. I want to say that I’m proud of us because there may have been misunderstandings and challenges that we faced this month, but we still chose to understand and love each other. I pray that sana gano’n pa rin tayo in the future and I know we will. </p>
+  <p>I want you to know that you’re always seen, okay? All your efforts, hard works, and even the little things that you do just like my favorite song says hehe. I’m proud of you, my love. Just continue kung anong gusto mong ipursue na gawin, lagi lang ako nasa likod mo nakasuporta sa’yo. Mahal na mahal kita, Juliane.</p>
+  <p>I'm sorry Love if I can't be with you tomorrow. I didn't expect to have conflict sa schedule huhu. I'm glad that you understandd. Don't worry, I'll make it up to you. Goodluck sa work, Love and remember to always do your best hihi. I love you!</p>
+  <p>Cheers to more months, years, decades, centuries, and light years with you, Love. I love you so much! Happy Monthsary, Love!</p>
+  <div class="photos"><label class="frame"><input type="file" accept="image/*"><span class="ph">♥<small>Add photo</small></span><em>First Photobooth</em></label><label class="frame"><input type="file" accept="image/*"><span class="ph">♥<small>Add photo</small></span><em>Our First Date</em></label><label class="frame"><input type="file" accept="image/*"><span class="ph">♥<small>Add photo</small></span><em>You said "Yes"</em></label></div>
+  <p class="sign">Love,</p>
+  <p class="sign">Ralph</p>
+  <button class="again" id="again">I love you</button>
+</article>
+<div class="lb" id="lightbox" role="dialog" aria-label="Photo"><img id="big" alt=""><p id="cap"></p></div>
+<audio id="music" src="littlethings.mp3" loop></audio>
+<script>
+(function(){
+  var env=document.getElementById('env'),garden=document.getElementById('garden'),
+      letter=document.getElementById('letter'),hint=document.getElementById('hint'),
+      again=document.getElementById('again'),timers=[];
+  var colors=[['#ff7a9c','#d9345f'],['#ffb3c6','#e86a8d'],['#ffd166','#f2a33a'],['#c77dff','#8e44c9'],['#ff5d73','#b3173a'],['#fff0f3','#f4b6c6']];
+  function plant(){
+    garden.innerHTML='';
+    var n=window.innerWidth<600?9:16;
+    for(var i=0;i<n;i++){
+      var c=colors[i%colors.length],t=document.createElement('div');
+      t.className='tulip';
+      var h=110+Math.random()*190,d=(i*0.12+Math.random()*0.3).toFixed(2);
+      t.style.cssText='--x:'+(4+i*(92/(n-1))+(Math.random()*3-1.5)).toFixed(1)+'%;--h:'+h+'px;--d:'+d+'s;--c1:'+c[0]+';--c2:'+c[1]+';--lh:'+(50+Math.random()*40)+'px';
+      t.innerHTML='<div class="sway"><div class="stem"></div><div class="leaf"></div><div class="leaf r"></div><div class="bloom"><i></i><i></i><i></i></div></div>';
+      garden.appendChild(t);
+    }
+  }
+  function later(f,ms){timers.push(setTimeout(f,ms))}
+  function start(){
+    if(env.classList.contains('open'))return;
+    env.classList.add('open');hint.style.opacity=0;
+    env.classList.add('open');hint.style.opacity=0;
+    var m=document.getElementById('music');m.volume=0.6;m.play().catch(function(){});
+    later(function(){env.classList.add('gone');plant();},1100);
+    later(function(){letter.classList.add('show');},4800);
+  }
+  function reset(){
+    timers.forEach(clearTimeout);timers=[];
+    letter.classList.remove('show');
+    env.classList.remove('open','gone');garden.innerHTML='';
+    hint.style.opacity=1;
+  }
+  /* To add your own photos in the code, paste an image data URI (data:image/jpeg;base64,...) for each frame, in order. Leave '' to pick a photo by tapping instead. */
+  var PHOTOS=['3.jpeg','2.jpeg','1.jpeg'];
+  var lb=document.getElementById('lightbox'),big=document.getElementById('big'),cap=document.getElementById('cap');
+  function setPhoto(fr,src){var ph=fr.querySelector('.ph');ph.textContent='';ph.style.backgroundImage='url("'+src+'")';fr.dataset.src=src;}
+  function closeBox(){lb.classList.remove('on');}
+  document.querySelectorAll('.frame').forEach(function(fr,i){
+    if(PHOTOS[i])setPhoto(fr,PHOTOS[i]);
+    fr.addEventListener('click',function(e){
+      if(fr.dataset.src){e.preventDefault();big.src=fr.dataset.src;cap.textContent=fr.querySelector('em').textContent;lb.classList.add('on');}
+    });
+    fr.querySelector('input').addEventListener('change',function(){
+      var f=this.files[0];if(!f)return;
+      var r=new FileReader();r.onload=function(){setPhoto(fr,r.result)};r.readAsDataURL(f);
+    });
+  });
+  lb.addEventListener('click',closeBox);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBox();});
+  env.addEventListener('click',start);
+  again.addEventListener('click',reset);
+})();
+</script>
+</body>
+</html>
